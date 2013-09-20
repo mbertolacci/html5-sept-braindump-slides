@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Prototyping Apps with HTML5</title><link rel="stylesheet" type="text/css" href="bower_components/prism/prism-tomorrow.css"><link rel="stylesheet" type="text/css" href="styles/main.css"></head><body><article><section><h1>Prototyping Apps with HTML5</h1></section><section><h2 class="bullet">This is a breezy brain dump</h2><h3 class="bullet">I will talk about tools mostly.</h3><ul><li>Yeoman (scaffolding, like Skelgen)</li><li>Grunt (build tool)</li><li>AngularJS</li><li>HammerJS</li><li>Coffeescript &amp; SCSS</li><li>You can use CSS3!</li><li>PhoneGap</li></ul></section><section><h2 class="bullet">Prerequisites</h2><ul><li>You need NodeJS installed. Use `brew install node` if on a Mac</li></ul></section><section><img width="200" src="http://yeoman.io/assets/img/yeoman-logo.png"><p>It's a scaffolding tool. (You need NodeJS installed.)</p><p>To scaffold an AngularJS project:</p><code class="language-bash"><pre>$ npm -g install yo generator-angular
+$ yo angular --coffee</pre></code><p class="bullet">(Will ask you some questions)</p></section><section><code class="language-bash"><pre>app/
+  components/  # (Javascript third party libraries)
+  scripts/     # Javascript/Coffeescript
+  styles/      # SCSS
+  views/       # HTML templates
+  
+test/          # Tests
+
+component.json # List of third party libraries
+Gruntfile.js   # Project build configuration
+
+karma.conf.js  # Test configurations
+</pre></code></section><section data-bespoke-state="emphatic"><h2>Demo!</h2></section><section><h2>Coffeescript</h2><p>Compiles to Javascript.</p><p>Some overhead learning a new language, but some killer features</p></section><section><p>String handling</p><code class="language-coffeescript"><pre>name = 'John Smith'
+interpolated = &quot;I am #{name.toUpperCase()}&quot;
+# interpolated: &quot;I am JOHN SMITH&quot;
+
+&quot;&quot;&quot;
+Multi
+line
+strings
+&quot;&quot;&quot;
+</pre></code></section><section><p>Regex</p><code class="language-coffeescript"><pre>name = 'John Smith'
+interpolated = ///#{name}///i
+# regex is now /John Smith/i
+
+///
+Multi
+line
+regex
+///
+</pre></code></section><section><p>? operator</p><code class="language-coffeescript"><pre>if x?
+  # Know x is defined
+  
+zip = lottery.drawWinner?().address?.zipcode
+
+# zip = undefined if drawWinner or address are undefined
+# ie will not throw an exception!
+
+# In JS:
+# zip = typeof lottery.drawWinner === &quot;function&quot;
+#  ? (_ref = lottery.drawWinner().address) != null
+#  ? _ref.zipcode : void 0 : void 0;
+</pre></code></section><section><h2>Touch events</h2><ul><li>They're not the same as mouse events.<ul><li>Eg click - 200ms delay</li><li>There's no hover on touch</li></ul></li><li>You should listen for touch style events directly, but it's a bit complex, so...</li></ul></section><section><h2>You really want to use <a href="http://eightmedia.github.io/hammer.js/">HammerJS</a></h2><p>No dependencies, but can optionally be used with jQuery.</p><p>Also listens for the equivalent mouse events</p><code class="language-javascript"><pre>Hammer(element).on('tap', function() {
+  console.log('You touched this');
+})
+.on('swipeleft', function() {
+  console.log('You swiped this');
+})
+
+</pre></code></section><section class="text-heavy"><h2 class="bullet">You can use modern browser features!</h2><div class="bullet blue"><h3>Flexbox</h3><p>Gives you good horizontal layouts (among other things)</p></div><hr><div class="bullet green"><h3>CSS Transitions (hardware accelerated!)</h3><p>No need for jQuery animations. They're too slow on mobile anyway.</p></div><hr><div class="bullet red"><h3>Gradient/rounded corners/WebKit image masks/CSS 3D/Box shadow</h3><p>All the things you can't use if you need to support IE</p></div></section><section data-bespoke-state="emphatic"><h2>Flexbox demo.</h2></section><section data-bespoke-state="emphatic"><h2>Coverflow CSS3 demo.</h2></section><section><h2>PhoneGap</h2><ul><li>Can write plugins for native functionality</li><li>Really good APIs</li><li>Scaffolds out an iOS or Android project for you</li></ul></section></article><script src="bower_components/bespoke.js/dist/bespoke.min.js"></script><script src="bower_components/bespoke-bullets/dist/bespoke-bullets.min.js"></script><script src="bower_components/bespoke-scale/dist/bespoke-scale.min.js"></script><script src="bower_components/bespoke-hash/dist/bespoke-hash.min.js"></script><script src="bower_components/bespoke-state/dist/bespoke-state.min.js"></script><script src="bower_components/prism/prism.js"></script><script src="bower_components/prism/components/prism-coffeescript.js"></script><script src="scripts/main.js"></script></body></html>
