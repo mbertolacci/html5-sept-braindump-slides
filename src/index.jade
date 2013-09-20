@@ -1,0 +1,186 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Prototyping Apps with HTML5
+
+    //- Check out 'src/bower_components/prism/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/prism-tomorrow.css')
+
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+
+  body
+
+    article
+
+      section
+        h1 Prototyping Apps with HTML5
+
+      section
+        h2.bullet This is a breezy brain dump
+        h3.bullet I will talk about tools mostly.
+        ul
+          li Yeoman (scaffolding, like Skelgen)
+          li Grunt (build tool)
+          li AngularJS
+          li HammerJS
+          li Coffeescript &amp; SCSS
+          li You can use CSS3!
+          li PhoneGap
+
+      //- section
+      //-   h2 Syntax Highlighting
+      //-   h3.bullet Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+      //-   hr
+      //-   code.language-javascript
+      //-     pre.
+      //-       bespoke.horizontal.from('article', {
+      //-         bullets: 'li, .bullet',
+      //-         hash: true,
+      //-         state: true
+      //-       });
+
+      section
+        h2.bullet Prerequisites
+        ul
+          li You need NodeJS installed. Use `brew install node` if on a Mac
+
+      section
+        img(width="200", src="http://yeoman.io/assets/img/yeoman-logo.png")
+        p It's a scaffolding tool. (You need NodeJS installed.)
+        p To scaffold an AngularJS project:
+        code.language-bash
+          pre.
+            $ npm -g install yo generator-angular
+            $ yo angular --coffee
+        p.bullet (Will ask you some questions)
+
+      section
+        code.language-bash
+          pre.
+            app/
+              components/  # (Javascript third party libraries)
+              scripts/     # Javascript/Coffeescript
+              styles/      # SCSS
+              views/       # HTML templates
+
+            test/          # Tests
+
+            component.json # List of third party libraries
+            Gruntfile.js   # Project build configuration
+
+            karma.conf.js  # Test configurations
+
+      section(data-bespoke-state='emphatic')
+        h2 Demo!
+
+      section
+        h2 Coffeescript
+        p Compiles to Javascript.
+        p Some overhead learning a new language, but some killer features
+
+      section
+        p String handling
+        code.language-coffeescript
+          pre.
+            name = 'John Smith'
+            interpolated = "I am \#{name.toUpperCase()}"
+            # interpolated: "I am JOHN SMITH"
+
+            """
+            Multi
+            line
+            strings
+            """
+
+      section
+        p Regex
+        code.language-coffeescript
+          pre.
+            name = 'John Smith'
+            interpolated = ///\#{name}///i
+            # regex is now /John Smith/i
+
+            ///
+            Multi
+            line
+            regex
+            ///
+
+      section
+        p ? operator
+        code.language-coffeescript
+          pre.
+            if x?
+              # Know x is defined
+
+            zip = lottery.drawWinner?().address?.zipcode
+
+            # zip = undefined if drawWinner or address are undefined
+            # ie will not throw an exception!
+
+            # In JS:
+            # zip = typeof lottery.drawWinner === "function"
+            #  ? (_ref = lottery.drawWinner().address) != null
+            #  ? _ref.zipcode : void 0 : void 0;
+            
+      section
+        h2 Touch events
+        ul
+          li They're not the same as mouse events.
+            ul
+              li Eg click - 200ms delay
+              li There's no hover on touch
+          li You should listen for touch style events directly, but it's a bit complex, so...
+
+      section
+        h2 You really want to use <a href="http://eightmedia.github.io/hammer.js/">HammerJS</a>
+        p No dependencies, but can optionally be used with jQuery.
+        p Also listens for the equivalent mouse events
+        code.language-javascript
+          pre.
+            Hammer(element).on('tap', function() {
+              console.log('You touched this');
+            })
+            .on('swipeleft', function() {
+              console.log('You swiped this');
+            })
+
+
+      section.text-heavy
+        h2.bullet You can use modern browser features!
+        div.bullet.blue
+          h3 Flexbox
+          p Gives you good horizontal layouts (among other things)
+        hr
+        div.bullet.green
+          h3 CSS Transitions (hardware accelerated!)
+          p No need for jQuery animations. They're too slow on mobile anyway.
+        hr
+        div.bullet.red
+          h3 Gradient/rounded corners/WebKit image masks/CSS 3D/Box shadow
+          p All the things you can't use if you need to support IE
+
+      section(data-bespoke-state='emphatic')
+        h2 Flexbox demo.
+
+      section(data-bespoke-state='emphatic')
+        h2 Coverflow CSS3 demo.
+
+      section
+        h2 PhoneGap
+        ul
+          li Can write plugins for native functionality
+          li Really good APIs
+          li Scaffolds out an iOS or Android project for you
+
+
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-scale/dist/bespoke-scale.min.js')
+    script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='bower_components/prism/components/prism-coffeescript.js')
+    script(src='scripts/main.js')
